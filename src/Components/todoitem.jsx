@@ -1,8 +1,10 @@
 import ToDoItemLists from "./todoitemlists";
 const ToDoItem = () => {
     return (
-        <ToDoItemLists/>
-    );
+        <div className="todolist">
+            < ToDoItemLists/>
+        </div>
+      );
 }
 
 export default ToDoItem;
