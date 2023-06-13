@@ -52,13 +52,8 @@
   padding: 20px;
 }
 
-.todoApp .todologic {
-  border: 1px solid #dbb4b4;
-}
-
 .todoApp .todologic .todoinput {
   padding: 10px;
-  border: 1px solid #3346f1;
 }
 
 .todoApp .todologic .todoinput input,

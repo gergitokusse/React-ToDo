@@ -1,17 +1,23 @@
 import { useRef, useState, useEffect } from "react";
+import { GetLocalData, updateLocaData } from "./localsrotage";
 const ToDoInput = () => {
     const ref = useRef();
-    let [data, setData] = useState([{task: 'Task-1', completed: false, index: 1}]);
+    let [data, setData] = useState(GetLocalData);
+
     useEffect(() => {
-        setData(JSON.parse(localStorage.getItem('React-Todo')));
-    }, [data])
+        const savedData = GetLocalData();
+        if(savedData){
+            setData(savedData);
+        }
+    }, [])
+
     const sbt = ((e) => {
-        e.preventDefault();
         const task = ref.current.value;
-        const newtask = {task: task, completed: false, index: data.length+1};
-        const newa = data.push(newtask);
-        console.log(newtask)
-        localStorage.setItem('React-Todo', JSON.stringify(newa));
+        if(task){
+            const newtask = {task: task, completed: false, index: data.length+1};
+            updateLocaData(newtask);
+            ref.current.value = "";
+        } else { e.preventDefault(); }
     });
     
     const changeValue = (e) => {
@@ -31,7 +37,7 @@ const ToDoInput = () => {
                     <i className="bi-plus-circle-fill" ></i>
                 </button>               
             </form>
-            <p>New input taask : { state.fname}</p>
+            <p>Live New Task : { state.fname}</p>
         </div>      
     );
 }
